@@ -36,7 +36,7 @@ export default function SkeletonDetail() {
 
   return (
     <ScrollView
-      style={{flex: 1, backgroundColor: colors.background}}
+      style={[styles.scroll, {backgroundColor: colors.background}]}
       scrollEnabled={false}
       showsVerticalScrollIndicator={false}>
       {/* Hero */}
@@ -89,6 +89,7 @@ export default function SkeletonDetail() {
 }
 
 const styles = StyleSheet.create({
+  scroll: {flex: 1},
   hero: {
     paddingHorizontal: spacing[20],
     paddingTop: spacing[20],

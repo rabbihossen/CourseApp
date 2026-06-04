@@ -15,11 +15,13 @@ const StarRating = React.memo(({rating, size = 12, showCount = true}: StarRating
       {Array.from({length: 5}).map((_, i) => (
         <Text
           key={i}
-          style={{
-            fontSize: size,
-            color: i < filled ? colors.star : colors.gray200,
-            marginRight: 1,
-          }}>
+          style={[
+            styles.star,
+            {
+              fontSize: size,
+              color: i < filled ? colors.star : colors.gray200,
+            },
+          ]}>
           ★
         </Text>
       ))}
@@ -32,6 +34,7 @@ const StarRating = React.memo(({rating, size = 12, showCount = true}: StarRating
 
 const styles = StyleSheet.create({
   row: {flexDirection: 'row', alignItems: 'center'},
+  star: {marginRight: 1},
   score: {
     marginLeft: 5,
     fontWeight: font.semibold,

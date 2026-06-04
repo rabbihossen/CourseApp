@@ -35,7 +35,7 @@ const sortChips: Chip<SortField>[] = [
   {label: 'Duration', value: 'duration_weeks'},
 ];
 
-function Pill<T>({
+function Pill({
   label,
   active,
   onPress,

@@ -12,7 +12,6 @@
 // react-native-config is optional, app still works without it
 let RNConfig: Record<string, string | undefined> = {};
 try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   RNConfig = require('react-native-config').default ?? {};
 } catch {
   // Package not installed, fall through to process.env / defaults

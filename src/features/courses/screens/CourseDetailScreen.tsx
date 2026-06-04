@@ -61,7 +61,7 @@ const CourseDetailScreen = ({route, navigation}: Props) => {
     } finally {
       setLoading(false);
     }
-  }, [courseId]);
+  }, [courseId, navigation]);
 
   useEffect(() => {
     fetchCourse();
@@ -74,7 +74,7 @@ const CourseDetailScreen = ({route, navigation}: Props) => {
     if (updated && updated.isEnrolled !== course.isEnrolled) {
       setCourse(prev => (prev ? {...prev, isEnrolled: updated.isEnrolled} : prev));
     }
-  }, [courses, courseId]);
+  }, [courses, courseId, course]);
 
   const handleEnrollToggle = useCallback(async () => {
     if (!course) return;
@@ -95,7 +95,7 @@ const CourseDetailScreen = ({route, navigation}: Props) => {
     } finally {
       setEnrollLoading(false);
     }
-  }, [course, courseId]);
+  }, [course, courseId, enrollCourse, unenrollCourse]);
 
   if (loading) {
     return (

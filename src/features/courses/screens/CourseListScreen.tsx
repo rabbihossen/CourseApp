@@ -53,6 +53,7 @@ const CourseListScreen = ({navigation}: Props) => {
 
   useEffect(() => {
     navigation.setOptions({
+      // eslint-disable-next-line react/no-unstable-nested-components
       headerRight: () => (
         <View style={styles.headerRight}>
           <TouchableOpacity
@@ -64,8 +65,8 @@ const CourseListScreen = ({navigation}: Props) => {
             }>
             <Text style={styles.themeToggleIcon}>{isDark ? '☀️' : '🌙'}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={signOut} style={{paddingHorizontal: spacing[8]}}>
-            <Text style={{color: colors.indigo, fontSize: 14, fontWeight: font.medium}}>
+          <TouchableOpacity onPress={signOut} style={styles.signOutBtn}>
+            <Text style={[styles.signOutText, {color: colors.indigo}]}>
               Sign out
             </Text>
           </TouchableOpacity>
@@ -81,18 +82,18 @@ const CourseListScreen = ({navigation}: Props) => {
       loadCourses();
       syncCourses();
     }
-  }, []);
+  }, [loadCourses, loadLastSynced, syncCourses]);
 
   useEffect(() => {
     setSearch(debouncedSearch);
-  }, [debouncedSearch]);
+  }, [debouncedSearch, setSearch]);
 
   useEffect(() => {
     const unsub = networkService.subscribe(connected => {
       setOnlineStatus(connected);
     });
     return unsub;
-  }, []);
+  }, [setOnlineStatus]);
 
   const onRefresh = useCallback(async () => {
     try {
@@ -231,6 +232,8 @@ const styles = StyleSheet.create({
   headerRight: {flexDirection: 'row', alignItems: 'center'},
   themeToggle: {paddingHorizontal: spacing[8], paddingVertical: spacing[4]},
   themeToggleIcon: {fontSize: 18},
+  signOutBtn: {paddingHorizontal: spacing[8]},
+  signOutText: {fontSize: 14, fontWeight: font.medium},
 
   searchWrap: {
     paddingHorizontal: spacing[16],

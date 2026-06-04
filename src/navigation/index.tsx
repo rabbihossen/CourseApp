@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CourseListScreen from '../features/courses/screens/CourseListScreen';
@@ -28,11 +28,11 @@ const linking = {
 
 export default function Navigation() {
   const {session, isGuest, isLoading} = useAuth();
-  const {colors, isDark} = useTheme();
+  const {colors} = useTheme();
 
   if (isLoading) {
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background}}>
+      <View style={[styles.loader, {backgroundColor: colors.background}]}>
         <ActivityIndicator size="large" color={colors.indigo} />
       </View>
     );
@@ -76,3 +76,7 @@ export default function Navigation() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  loader: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+});
