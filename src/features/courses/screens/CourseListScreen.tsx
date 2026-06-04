@@ -209,7 +209,6 @@ const CourseListScreen = ({navigation}: Props) => {
           data={courses}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
-          estimatedItemSize={240}
           ListEmptyComponent={renderEmpty}
           contentContainerStyle={styles.listPadding}
           refreshControl={
